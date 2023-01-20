@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dose Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 h-full">
+    <section class=" w-5/6 mx-auto">
+        <section class="font-serif text-center px-2 md:py-2 py-4 w-full">
+            <h1 class="sm:text-lg md:text-2xl lg:text-3xl sm:font-medium md:font-semibold lg:font-bold text-slate-300">M
+                A
+                RASHID HOSPITAL (PVT) LTD.</h1>
+            <h1 class="sm:text-lg md:text-2xl lg:text-3xl sm:font-medium md:font-semibold lg:font-bold text-slate-300">
+                ACCIDENT & EMERGENCY</h1>
+        </section>
+        <section class="font-sans text-center px-2 md:py-2 lg:py-4 w-full">
+            <div class="md:py-2 lg:py-4"><input type="text" id="search-query"
+                    class="bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300"
+                    placeholder="Medication Name"><input type="submit" value="Search" onclick="searchDrug()"
+                    class="outline-0 px-2 py-1 font-bold bg-slate-300 cursor-pointer">
+            </div>
+            <div class="text-slate-300 md:py-2 lg:py-4">
+                <p id="name" class="text-2xl font-bold text-orange-700"></p>
+                <p id="dose"></p>
+                <p id="strength"></p>
+                <p id="dilution"></p>
+            </div>
+        </section>
+        <section class="font-sans text-center px-2 md:py-2 lg:py-4 w-full">
+            <div class="w-3/6 mx-auto grid grid-cols-12 gap-y-2">
+                <label for="dose"
+                    class="col-span-3 text-slate-300 bg-slate-900 text-right pr-8 py-1 font-bold">Dose</label>
+                <input type="text" id="dose"
+                    class="col-span-6 bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300">
+                <select id="unitOfDose"
+                    class="col-span-2 outline-0 text-slate-300 text-left pl-5 bg-slate-900 py-1 font-bold">
+                    <option value="mg">mg</option>
+                    <option value="mcg">mcg</option>
+                </select>
+                <label for="weight"
+                    class="col-span-3 text-slate-300 bg-slate-900 text-right pr-8 py-1 font-bold">weight</label>
+                <input type="text" id="weight"
+                    class="col-span-6 bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300">
+                <span class="col-span-2 outline-0 text-slate-300 text-left pl-5 bg-slate-900 py-1 font-bold">
+                    kg
+                </span>
+                <label for="strength"
+                    class="col-span-3 text-slate-300 bg-slate-900 text-right pr-8 py-1 font-bold">Strength</label>
+                <input type="text" id="strength"
+                    class="col-span-6 bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300">
+                <select id="unitOfStrength"
+                    class="col-span-2 outline-0 text-slate-300 text-left pl-5 bg-slate-900 py-1 font-bold">
+                    <option value="mg">mg</option>
+                    <option value="mcg">mcg</option>
+                </select>
+                <label for="quantity"
+                    class="col-span-3 text-slate-300 bg-slate-900 text-right pr-8 py-1 font-bold">Quantity</label>
+                <input type="text" id="quantity"
+                    class="col-span-6 bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300">
+                <span class="col-span-2 outline-0 text-slate-300 text-left pl-5 bg-slate-900 py-1 font-bold">
+                    amp
+                </span>
+                <label for="volume"
+                    class="col-span-3 text-slate-300 bg-slate-900 text-right pr-8 py-1 font-bold">Volume</label>
+                <input type="text" id="volume"
+                    class="col-span-6 bg-slate-800 text-slate-300 outline-0 px-2 py-1 focus:bg-slate-300 focus:text-slate-900 focus:placeholder-slate-300">
+                <span class="col-span-2 outline-0 text-slate-300 text-left pl-5 bg-slate-900 py-1 font-bold">
+                    ml
+                </span>
+                <span class="col-span-4"></span>
+                <input type="submit" value="Calculate" onclick="calculateTotalDose()"
+                    class="col-span-4 outline-0 px-2 py-1 font-bold bg-slate-300 cursor-pointer">
+                <span class="col-span-4"></span>
+
+            </div>
+            <div class="text-slate-300 md:py-2 lg:py-4">
+                <p id="totalDoseRequired"></p>
+                <p id="drugConcentration"></p>
+                <p id="mlPerHour"></p>
+                <p id="dropPerMinute"></p>
+                <p id="microDropPerMinute"></p>
+            </div>
+
+        </section>
+
+        <section class="w-full  text-center px-2 md:py-2 py-4 ">
+            <p class="text-xs text-slate-300">© Sajib Miah Incharge</p>
+        </section>
+    </section>
+    <script src="app.js"></script>
+</body>
+
+</html>
