@@ -48,78 +48,78 @@ inputField.addEventListener("keydown", function (event) {
 
 //////////////////////////////////
 
+
+
 function calculateTotalDose() {
-    let dose = parseFloat(document.getElementById("dose").value);
+    let dose = parseFloat(document.getElementById("dose1").value);
+    console.log(dose)
     let unitOfDose = document.getElementById("unitOfDose").value;
     let weight = parseFloat(document.getElementById("weight").value);
     let totalDoseRequired = document.getElementById("totalDoseRequired");
-    let strength = parseFloat(document.getElementById("strength").value);
-
+    let strength = parseFloat(document.getElementById("strength1").value);
     let unitOfStrength = document.getElementById("unitOfStrength").value;
     let quantity = parseFloat(document.getElementById("quantity").value);
     let volume = document.getElementById("volume").value;
     let drugConcentration = document.getElementById("drugConcentration");
+    let dose_concentration = document.getElementById("dose_concentration");
     let mlPerHour = document.getElementById("mlPerHour");
     let dropPerMinute = document.getElementById("dropPerMinute");
     let microDropPerMinute = document.getElementById("microDropPerMinute");
 
 
     if (dose === "" || dose <= 0 || isNaN(dose)) {
-        totalDoseRequired.innerHTML = "Please input valid dose";
+        totalDoseRequired.innerText = "Please input valid dose";
     }
     else if (weight === "" || weight <= 0) {
         weight = "Please enter valid Weight";
     }
     else {
-        if (unitOfDose == "mg") {
-            totalDoseRequired.innerHTML = (dose * weight) + " mg";
-        }
-        else if (unitOfDose == "mcg") {
-            totalDoseRequired.innerHTML = (dose * weight) + " mcg";
-        }
+        totalDoseRequired.innerText = (dose * weight);
     }
     if (strength === "" || strength <= 0 || isNaN(strength)) {
-        drugConcentration.innerHTML = "Please input valid strength";
+        dose_concentration.innerText = "0 " + unitOfDose + "/ml";
 
     }
     else if (quantity === "" || quantity <= 0 || isNaN(quantity)) {
-        drugConcentration.innerHTML = "Please input valid quantity";
+        dose_concentration.innerText = "0 " + unitOfDose + "/ml";
+
     }
     else if (volume === "" || volume <= 0 || isNaN(volume)) {
-        drugConcentration.innerHTML = "Please input valid volume";
+        dose_concentration.innerText = "0 " + unitOfDose + "/ml";
     }
     else {
         if (unitOfDose == "mg" && unitOfStrength == "mg") {
-            drugConcentration.innerHTML = ((strength * quantity) / volume) + " mg/ml";
+            drugConcentration.innerText = ((strength * quantity) / volume);
         }
         else if (unitOfDose == "mcg" && unitOfStrength == "mcg") {
-            drugConcentration.innerHTML = ((strength * quantity) / volume) + " mcg/ml";
+            drugConcentration.innerText = ((strength * quantity) / volume);
         }
         else if (unitOfDose == "mcg" && unitOfStrength == "mg") {
-            drugConcentration.innerHTML = "✔ Required Dose : " + ((strength * 1000 * quantity) / volume) + " mcg/ml";
+            drugConcentration.innerText = ((strength * 1000 * quantity) / volume);
         }
         else if (unitOfDose == "mg" && unitOfStrength == "mcg") {
-            drugConcentration.innerHTML = "✔ Drug Concentration : " + ((strength / 1000 * quantity) / volume) + " mg/ml";
+            drugConcentration.innerText = ((strength / 1000 * quantity) / volume);
         }
 
     }
+    dose_concentration.innerText = "✔ Dose Required : " + totalDoseRequired.innerText + " " + unitOfDose + " " + "✔ Drug Concentration :" + drugConcentration.innerText + " " + unitOfDose + "/ml";
     if (isNaN((parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) * 60)) {
-        mlPerHour.innerHTML = "";
+        mlPerHour.innerText = "";
     }
     else {
-        mlPerHour.innerHTML = "✔ Hourly Quantity : " + (parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) * 60 + " ml";
+        mlPerHour.innerText = "✔ Hourly Quantity : " + (parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) * 60 + " ml/hour";
     }
-    if (isNaN((parseFloat(mlPerHour.innerText) / 60) * 15)) {
-        dropPerMinute.innerHTML = "";
-    }
-    else {
-        dropPerMinute.innerHTML = "✔ Drop : " + (parseFloat(mlPerHour.innerText) / 60) * 15 + " drop/min";
-    }
-    if (isNaN((parseFloat(mlPerHour.innerText) / 60) * 15 * 4)) {
-        microDropPerMinute.innerHTML = "";
+    if (isNaN((parseFloat((parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) / 60) * 15))) {
+        dropPerMinute.innerText = "";
     }
     else {
-        microDropPerMinute.innerHTML = "✔ Microdrop : " + (parseFloat(mlPerHour.innerText) / 60) * 15 * 4 + " microdrop/min";
+        dropPerMinute.innerText = "✔ Drop : " + (parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) * 60 / 60 * 15 + " drop/min";
+    }
+    if (isNaN((parseFloat((parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) / 60) * 15) * 4)) {
+        microDropPerMinute.innerText = "";
+    }
+    else {
+        microDropPerMinute.innerText = "✔ Microdrop : " + (parseFloat(totalDoseRequired.innerText) / parseFloat(drugConcentration.innerText)) * 60 / 60 * 15 * 4 + " microdrop/min";
     }
 
 }
